@@ -1,0 +1,3 @@
+[submodule "jx-rs4se"]
+	path = jx-rs4se
+	url = git@github.com:jaku-jaku/jx-rs4se.git
