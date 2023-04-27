@@ -19,11 +19,11 @@
 
   <arg name="depth_width"         default="640"/>
   <arg name="depth_height"        default="480"/>
-  <arg name="enable_depth"        default="true"/>
+  <arg name="enable_depth"        default="false"/>
 
   <arg name="confidence_width"    default="640"/>
   <arg name="confidence_height"   default="480"/>
-  <arg name="enable_confidence"   default="true"/>
+  <arg name="enable_confidence"   default="false"/>
   <arg name="confidence_fps"      default="30"/>
 
   <arg name="infra_width"         default="640"/>
@@ -93,7 +93,7 @@
   <arg name="odom_frame_id"            default="$(arg tf_prefix)_odom_frame"/>
   <arg name="topic_odom_in"            default="$(arg tf_prefix)/odom_in"/>
   <arg name="calib_odom_file"          default=""/>
-  <arg name="publish_odom_tf"          default="true"/>
+  <arg name="publish_odom_tf"          default="false"/>
 
   <arg name="stereo_module/exposure/1" default="7500"/>
   <arg name="stereo_module/gain/1"     default="16"/>

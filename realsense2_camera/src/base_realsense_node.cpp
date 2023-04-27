@@ -569,6 +569,8 @@ void BaseRealSenseNode::registerDynamicOption(ros::NodeHandle& nh, rs2::options 
                                     {set_sensor_parameter_to_ros(module_name, sensor, RS2_OPTION_EXPOSURE);});
                                 _update_functions_v.push_back([this, module_name, sensor]()
                                     {set_sensor_parameter_to_ros(module_name, sensor, RS2_OPTION_GAIN);});
+                                // _update_functions_v.push_back([this, module_name, sensor]()
+                                //     {set_sensor_parameter_to_ros(module_name, sensor, RS2_OPTION_EMITTER_ENABLED);});
                                 _update_functions_cv.notify_one();
                             },
                         sensor.get_option_description(option), enum_dict);
@@ -605,6 +607,14 @@ void BaseRealSenseNode::registerDynamicReconfigCb(ros::NodeHandle& nh)
         std::string module_name = create_graph_resource_name(sensor.get_info(RS2_CAMERA_INFO_NAME));
         ROS_DEBUG_STREAM("module_name:" << module_name);
         registerDynamicOption(nh, sensor, module_name);
+
+        // HACK: temporarily disable emitter for depth sensor (if sensor supports)
+        if (sensor.supports(RS2_OPTION_EMITTER_ENABLED))
+        {
+            ROS_INFO_STREAM(" HACK: disable emitter ");
+            sensor.set_option(RS2_OPTION_EMITTER_ENABLED, 0.f);
+        }
+        // sensor.set_option(RS2_OPTION_GLOBAL_TIME_ENABLED, true);
     }
 
     for (NamedFilter nfilter : _filters)
