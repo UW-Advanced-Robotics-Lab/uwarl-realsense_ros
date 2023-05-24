@@ -609,11 +609,11 @@ void BaseRealSenseNode::registerDynamicReconfigCb(ros::NodeHandle& nh)
         registerDynamicOption(nh, sensor, module_name);
 
         // HACK: temporarily disable emitter for depth sensor (if sensor supports)
-        if (sensor.supports(RS2_OPTION_EMITTER_ENABLED))
-        {
-            ROS_INFO_STREAM(" HACK: disable emitter ");
-            sensor.set_option(RS2_OPTION_EMITTER_ENABLED, 0.f);
-        }
+        // if (sensor.supports(RS2_OPTION_EMITTER_ENABLED))
+        // {
+        //     ROS_INFO_STREAM(" HACK: disable emitter ");
+        //     sensor.set_option(RS2_OPTION_EMITTER_ENABLED, 0.f);
+        // }
         // sensor.set_option(RS2_OPTION_GLOBAL_TIME_ENABLED, true);
     }
 
